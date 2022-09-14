@@ -1,7 +1,7 @@
 {
   "LATEST_COMICS": "Latest Comics",
   "HOME_HEADER": "Home",
-  "SEARCH_RESULT_TITLE": "${1} results for ${2}",
+  "SEARCH_RESULT_TITLE": "${1} results for: ${2}",
   "SEARCH_RESULT_HEADER": "Show ${1} results",
   "HEAD_TITLE": "XKCD - Results for: ${1}"
 }

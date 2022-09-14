@@ -1,9 +1,10 @@
 import fs from 'fs/promises'
 import Head from 'next/head'
 import Link from 'next/link';
-import Image from 'next/image';
 import { Layout } from 'components/Layout';
 import { useI18N } from 'context/i18n';
+import { Comic } from '../components/Comic'
+import { Grid, Text } from "@nextui-org/react"
 
 export default function Home({ latestComics }) {
   const { t } = useI18N()
@@ -16,23 +17,40 @@ export default function Home({ latestComics }) {
       </Head>
 
       <Layout>
-        <h2>{t('LATEST_COMICS')}</h2>
-        {
-          latestComics.map(comic => (
-            <Link href={`/comic/${comic.id}`} key={comic.id}>
-              <a>
-                <h3>{comic.title}</h3>
-                <Image
-                  width={comic.width}
-                  height={comic.height}
-                  objectFit='contain'
-                  src={comic.img}
-                  alt={comic.alt}
-                />
-              </a>
-            </Link>
-          ))
-        }
+        <Text
+          className='my-6 text-center'
+          h1 weight="bold" size={50}
+          css={{
+            textGradient: "45deg, $blue700 0%, $cyan600 100%",
+          }}
+        >
+          {t('LATEST_COMICS')}
+        </Text>
+        <div className='mb-12'>
+          <Grid.Container gap={2} justify="center">
+            {
+              latestComics.map(comic => (
+                <Link href={`/comic/${comic.id}`} key={comic.id}>
+                    <Grid>
+                      <a>
+                        <Comic
+                          id={comic.id}
+                          img={comic.img}
+                          width={`${parseInt(comic.width/2)}px`}
+                          height={`${parseInt(comic.height/2)}px`}
+                          title={comic.title}
+                          alt={comic.alt}
+                          day={comic.day}
+                          month={comic.month}
+                          year={comic.year}
+                        />
+                      </a>
+                    </Grid>
+                </Link>
+              ))
+            }
+          </Grid.Container>
+        </div>
       </Layout>
     </>
   )

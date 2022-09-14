@@ -12,7 +12,7 @@ export const search = async ({ query }) => {
   if(CACHE[query]) return { results: CACHE[query] }
 
   const { hits } = await index.search(query, {
-    attributesToRetrieve: ['id', 'title', 'img', 'alt'],
+    attributesToRetrieve: ['id', 'title', 'img', 'alt', 'day', 'month', 'year'],
     hitsPerPage: 10
   })
 

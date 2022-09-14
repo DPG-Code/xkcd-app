@@ -1,6 +1,7 @@
 import Head from 'next/head' 
 import { NextUIProvider } from '@nextui-org/react';
 import { I18NProvider } from 'context/i18n';
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (

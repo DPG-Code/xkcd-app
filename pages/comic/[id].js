@@ -4,35 +4,50 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Layout } from 'components/Layout'
+import { ButtonPrevEnable, ButtonNextEnable, ButtonPrevDisable, ButtonNextDisable } from 'components/ButtonPrev'
 
 export default function Comic({ img, alt, title, width, height, prevId, nextId, hasPrev, hasNext }) {
   return (
     <>
       <Head>
-        <title>XKCD - Comics</title>
-        <meta name="description" content="Comics for developers" />
+        <title>{title}</title>
+        <meta name="description" content={title} />
       </Head>
 
       <Layout>
-        <h2>{title}</h2>
-        <Image
-          width={width}
-          height={height}
-          src={img}
-          alt={alt}
-        />
-        <p>{alt}</p>
+        <section className='flex flex-col items-center justify-start'>
+          <h2 className='my-6 w-10/12 text-center text-3xl font-bold'>{title}</h2>
+          <div className='mx-8'>
+            <Image
+              width={width/1.8}
+              height={height/1.8}
+              src={img}
+              alt={alt}
+            />
+          </div>
+          <p className='mt-6 mb-10 w-10/12 text-center text-lg font-medium'>{alt}</p>
+        </section>
 
-        {
-          hasPrev && <Link href={`/comic/${prevId}`}>
-            <a>Previous</a>
-          </Link>
-        }
-        {
-          hasNext && <Link href={`/comic/${nextId}`}>
-            <a>Next</a>
-          </Link>
-        }
+        <section className='mb-10 w-full flex item-center justify-center gap-4'>
+          {
+            hasPrev
+            ? <Link href={`/comic/${prevId}`}>
+              <a>
+                <ButtonPrevEnable />
+              </a>
+            </Link>
+            : <ButtonPrevDisable />
+          }
+          {
+            hasNext
+            ? <Link href={`/comic/${nextId}`}>
+              <a>
+                <ButtonNextEnable />
+              </a>
+            </Link>
+            : <ButtonNextDisable />
+          }
+        </section>
       </Layout>
     </>
   )
