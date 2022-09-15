@@ -10,9 +10,13 @@ module.exports = {
       '128': '32rem'
     },
     screens: {
-      'xs': '450px',
+      'xs': '550px',
     },
-    extend: {},
+    extend: {
+      colors: {
+        'primary': '#0072F5',
+      }
+    },
   },
   plugins: [],
 }

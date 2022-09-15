@@ -1,10 +1,14 @@
 import { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useI18N } from 'context/i18n'
-import { useRouter } from 'next/router'
 
-import { Navbar, Text, Input } from "@nextui-org/react"
+import { Navbar, Text, Input, Switch, useTheme } from "@nextui-org/react"
+import { useTheme as useNextTheme } from 'next-themes'
+
 import { SearchIcon } from "./SearchIcon.js"
+import { SunIcon } from './SunIcon.js'
+import { MoonIcon } from './MoonIcon.js'
 
 export function Header() {
   const [results, setResults] = useState([])
@@ -12,6 +16,11 @@ export function Header() {
   const { locale, locales } = useRouter()
   const { t } = useI18N()
 
+  // Dark Mode
+  const { setTheme } = useNextTheme();
+  const { isDark, type } = useTheme();
+
+  // Query for search comic
   const getValue = () => searchRef.current?.value
 
   const handleChange = (e) => {
@@ -30,9 +39,9 @@ export function Header() {
   return (
     <>
       <Navbar variant="sticky">
-        <h2 className='mr-0 text-sm font-bold   xs:text-lg xs:mr-auto   sm:text-2xl'>xkcd App</h2>
+        <h2 className='mr-auto text-sm font-bold   xs:text-lg   sm:text-2xl'>xkcd App</h2>
 
-        <div className='mr-0   sm:mr-4'>
+        <div className='mx-0   xs:mx-4'>
           <Input
               ref={searchRef}
               onChange={handleChange}
@@ -45,7 +54,7 @@ export function Header() {
               aria-label="Search"
               bordered
               rounded
-              className='py-2 px-4 w-44   xs:py-1 xs:px-2 xs:w-56'
+              className='py-1.5 px-4 w-44   xs:px-2 xs:w-56'
             />
           {
             Boolean(results.length) &&
@@ -64,7 +73,7 @@ export function Header() {
                     <li key={result.id}>
                       <Link href={`/comic/${result.id}`}>
                         <a>
-                          <Text className='w-full text-sm overflow-hidden text-ellipsis whitespace-nowrap'>
+                          <Text className='w-full text-sm overflow-hidden text-black text-ellipsis whitespace-nowrap'>
                             {result.title}
                           </Text>
                         </a>
@@ -75,18 +84,27 @@ export function Header() {
               </ul>
           }
         </div>
+        
+        <div className='mr-0 xs:mr-4'>
+          <Switch
+            checked={isDark}
+            onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
+            iconOn={<SunIcon filled />}
+            iconOff={<MoonIcon filled />}
+            shadow
+          />
+        </div>
 
         <Navbar.Content
-          enableCursorHighlight
           activeColor="primary"
-          variant="highlight-rounded"
-          className='text-sm   sm:text-base'
+          variant="defaul"
+          className='text-sm hidden   xs:flex   sm:text-base'
         >
-          <Link href='/' className='hidden   xs:flex'>
-            <Navbar.Link className='hidden   xs:flex' isActive>{t('HOME_HEADER')}</Navbar.Link>
+          <Link href='/'>
+            <Navbar.Link className='ml-0' isActive>{t('HOME_HEADER')}</Navbar.Link>
           </Link>
           <Link href='/' locale={restOfLocales[0]}>
-            <Navbar.Link>{restOfLocales[0]}</Navbar.Link>
+            <a className='font-normal'>{restOfLocales[0]}</a>
           </Link>
         </Navbar.Content>
       </Navbar>

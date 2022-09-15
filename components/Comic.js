@@ -2,13 +2,13 @@ import { Card, Col, Row, Text } from "@nextui-org/react";
 
 export function Comic ({ img, title, alt, day, month, year }) {
   return (
-    <Card css={{ w: "200px", h: "200px" }}>
+    <Card css={{ w: "200px", h: "200px" }} isHoverable variant="bordered">
       <Card.Body css={{ p: 0 }}>
         <Card.Image
           src={img}
           width="100%"
           height="100%"
-          objectFit="cover"
+          objectFit="contain"
           alt={alt}
         />
       </Card.Body>

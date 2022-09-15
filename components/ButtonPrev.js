@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 
 const Prev = () => {
@@ -18,14 +17,14 @@ const Next = () => {
 
 function ButtonPrevEnable() {
   return (
-    <Button icon={<Prev fill="currentColor"/>} rounded auto>
+    <Button icon={<Prev fill="currentColor"/>} rounded auto shadow className='bg-[#0072F5]'>
         Prev
     </Button>
   )
 }
 function ButtonNextEnable() {
   return (
-    <Button iconRight={<Next fill="currentColor"/>} rounded auto>
+    <Button iconRight={<Next fill="currentColor"/>} rounded auto shadow className='bg-[#0072F5]'>
         Next
     </Button>
   )
