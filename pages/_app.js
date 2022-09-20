@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <I18NProvider>
       <NextThemesProvider
-        defaultTheme="system"
+        defaultTheme={darkTheme}
         attribute="class"
         value={{
           light: lightTheme.className,

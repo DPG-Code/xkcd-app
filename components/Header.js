@@ -13,7 +13,7 @@ import { MoonIcon } from './MoonIcon.js'
 export function Header() {
   const [results, setResults] = useState([])
   const searchRef = useRef()
-  const { locale, locales } = useRouter()
+  const { locale, locales, asPath } = useRouter()
   const { t } = useI18N()
 
   // Dark Mode
@@ -39,14 +39,18 @@ export function Header() {
   return (
     <>
       <Navbar variant="sticky">
-        <h2 className='mr-auto text-sm font-bold   xs:text-lg   sm:text-2xl'>xkcd App</h2>
+        <Link href='/'>
+            <a className='mr-auto text-sm font-bold   xs:text-lg   sm:text-2xl'>
+              xkcd
+            </a>
+        </Link>
 
         <div className='mx-0   xs:mx-4'>
           <Input
               ref={searchRef}
               onChange={handleChange}
               clearable
-              contentLeft={<SearchIcon fill="var(--nextui-colors-accents6)" size={16} />}
+              contentLeft={<SearchIcon fill="var(--nextui-colors-accents6)" size={14} />}
               contentLeftStyling={false}
               css={{ w: "100%", "@xsMax": { mw: "300px" },
                 "& .nextui-input-content--left": { h: "100%", ml: "$4", dflex: "center"}}}
@@ -54,7 +58,7 @@ export function Header() {
               aria-label="Search"
               bordered
               rounded
-              className='py-1.5 px-4 w-44   xs:px-2 xs:w-56'
+              className='py-2 px-4 w-40   xs:px-2 xs:w-56'
             />
           {
             Boolean(results.length) &&
@@ -85,26 +89,24 @@ export function Header() {
           }
         </div>
         
-        <div className='mr-0 xs:mr-4'>
+        <div className='mr-4 flex items-center justify-center'>
           <Switch
             checked={isDark}
             onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
             iconOn={<SunIcon filled />}
             iconOff={<MoonIcon filled />}
             shadow
+            size="sm"
           />
         </div>
 
         <Navbar.Content
           activeColor="primary"
           variant="defaul"
-          className='text-sm hidden   xs:flex   sm:text-base'
+          className='text-base   sm:text-lg'
         >
-          <Link href='/'>
-            <Navbar.Link className='ml-0' isActive>{t('HOME_HEADER')}</Navbar.Link>
-          </Link>
-          <Link href='/' locale={restOfLocales[0]}>
-            <a className='font-normal'>{restOfLocales[0]}</a>
+          <Link href={`${asPath}`} locale={restOfLocales[0]}>
+            <Navbar.Link className='font-semibold' isActive>{restOfLocales[0]}</Navbar.Link>
           </Link>
         </Navbar.Content>
       </Navbar>
