@@ -1,6 +1,6 @@
-XKCD App 🖌
+# XKCD App 🖌
 
-![Project previe image](https://res.cloudinary.com/dhpxqwsym/image/upload/w_1280,h_720,c_fill/v1678870284/documentations/xkcd_v5iazt)
+![Project previe image](https://res.cloudinary.com/dhpxqwsym/image/upload/w_1280,h_720,c_fill/v1678870284/documentations/xkcd_wgatwn)
 
 ### 📌 About The Project
 
