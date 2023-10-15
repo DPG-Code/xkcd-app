@@ -4,7 +4,7 @@
 
 ### 📌 About The Project
 
-App XKCD Comics.
+Explore scraped XKCD comics effortlessly on this interactive web platform.
 
 ### 📌 Built With
 
