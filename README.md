@@ -15,7 +15,7 @@
 <p></p>
 </div>
 
-![Next.js Badge](https://img.shields.io/badge/Next.js 12-000?logo=nextdotjs =fff =flat)
+![Next.js Badge](https://img.shields.io/badge/Next.js_12-000?logo=nextdotjs=fff=flat)
 ![GitHub stars](https://img.shields.io/github/stars/Dpg-Code/xkcd-app)
 ![GitHub forks](https://img.shields.io/github/forks/Dpg-Code/xkcd-app)
 ![GitHub PRs](https://img.shields.io/github/issues-pr/Dpg-Code/xkcd-app)
